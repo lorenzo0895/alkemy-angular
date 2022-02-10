@@ -1,0 +1,31 @@
+<div class="blur">
+  <div cdkDrag class="container-add-superhero">
+    <div cdkDragHandle class="mover"></div>
+    <img (click)="switchAddSuperhero()" class="close-button" src="../../../assets/images/close-button.png" alt="close">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name:</label>
+      <div class="input-group" [formGroup]="form">
+        <input type="text" class="form-control" id="name" placeholder="e.g.: Batman" formControlName="name" (keyup.enter)="find()">
+        <input type="submit" class="btn btn2 btn-primary" value="Find" (click)="find()">
+      </div>
+    </div>
+    <p *ngIf="alert != ''" class="alert alert-warning">
+      {{alert}}
+    </p>
+    <div class="container-table">
+      <table class="table">
+        <tbody>
+          <tr *ngFor="let superheroe of listSuperheroes, let i = index">
+            <td>
+              <div class="no-image superheroe-image">
+                <img *ngIf="superheroe.image.url" (error)="deleteImage($event)" [src]="superheroe?.image?.url">
+              </div>
+            </td>
+            <td>{{superheroe?.name}}</td>
+            <td class="col-btn"><button (click)="addSuerheroe(superheroe)" class="btn btn2 btn-primary">Agregar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

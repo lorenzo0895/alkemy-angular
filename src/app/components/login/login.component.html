@@ -1,0 +1,28 @@
+<div class="container">
+  <img class="logo" src="../../../assets/images/only-logo.jpeg" alt="logo">
+  <h1>Bienvenido a mi Reto Alkemy</h1>
+  <form [formGroup]="form">
+    <div class="alert alert-warning" role="alert" *ngIf="alert.length != 0">{{alert}}</div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" class="form-control" id="email" formControlName="email" placeholder="ejemplo@ejemplo.com">
+      <div class="alert alert-warning" role="alert"
+      *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
+        El email es requerido.
+      </div>
+      <div class="alert alert-warning" role="alert"
+      *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
+        El campo debe tener formato email.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" formControlName="password">
+      <div class="alert alert-warning" role="alert"
+        *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
+          El password es requerido.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="login()">Enviar</button>
+  </form>
+</div>

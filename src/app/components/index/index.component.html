@@ -1,0 +1,56 @@
+<app-nav></app-nav>
+
+<app-add-superhero
+  *ngIf="showAddSuperhero"
+  [listTeam]="listTeam"
+  (togglePopUp)="switchAddSuperhero()"
+  (toggleAddSuperheroe)="addSuperheroe($event)"
+>
+</app-add-superhero>
+
+<div class="container">
+  <h1>My Team <button type="button" class="btn btn-success" (click)="switchAddSuperhero()">Add Superhero</button></h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col">Powerstats</th>
+        <th scope="col" class="table-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+        <ng-container *ngFor="let superheroe of listTeam">
+          <tr>
+            <td>
+              <div class="no-image superheroe-image">
+                <a target="blank" [href]="superheroe.image.url">
+                  <img *ngIf="superheroe.image.url" (error)="deleteImage($event)" [src]="superheroe?.image?.url">
+                </a>
+              </div>
+            </td>
+            <td>{{superheroe?.name}}</td>
+            <td>{{superheroe?.powerstats}}</td>
+            <td *ngIf="screenWidth >= 768 ; else elseBlock" class="table-center">
+              <a target="blank" [href]="'/details/'+superheroe?.id" type="button" class="btn btn2 btn-primary">Detalle</a>
+              <button (click)="removeSuperheroe(superheroe?.id)" type="button" class="btn btn2 btn-danger">Delete</button>
+            </td>
+            <ng-template #elseBlock>
+              <td class="table-center">
+                <img (click)="switchButtons(0)" src="../../../assets/images/caret-down.svg" class="cursor-pointer" alt="open">
+              </td>
+            </ng-template>
+          </tr>
+          <tr class="table-right" id="tr-show-0" *ngIf="screenWidth < 768">
+            <td colspan="4" class="tr-hidden" id="tr-hidden-0">
+              <div class="inactive">
+                <a target="blank" [href]="'/details/'+superheroe?.id" type="button" class="btn btn2 btn-primary">Detalle</a>
+                <button (click)="removeSuperheroe(superheroe?.id)" type="button" class="btn btn-danger">Eliminar</button>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+
+    </tbody>
+  </table>
+</div>

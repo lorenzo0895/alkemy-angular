@@ -1,0 +1,45 @@
+table {
+  border-collapse: collapse;
+}
+td {
+  vertical-align: middle;
+}
+.tr-hidden {
+  padding: 0 8px;
+}
+.inactive {
+  max-height: 0;
+  padding: 0 8px;
+  overflow: hidden;
+  transition: all 0.15s;
+}
+.active {
+  max-height: 100px;
+  padding: 0 8px;
+  transition: all 0.3s;
+}
+.superheroe-image {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: linear-gradient(to top right, #cfd9df 0%, #e2ebf0 100%);
+  overflow: hidden;
+}
+.superheroe-image img {
+  width:100%;
+  height:100%;
+  object-fit: cover;
+}
+.btn2 {
+  width: 85px;
+  margin-right: 5px;
+}
+.table-center {
+  text-align: center;
+}
+.table-right {
+  text-align: end;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
