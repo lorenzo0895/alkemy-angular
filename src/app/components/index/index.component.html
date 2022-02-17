@@ -1,11 +1,6 @@
 <app-nav></app-nav>
 
-<app-add-superhero
-  *ngIf="showAddSuperhero"
-  [listTeam]="listTeam"
-  (togglePopUp)="switchAddSuperhero()"
-  (toggleAddSuperheroe)="addSuperheroe($event)"
->
+<app-add-superhero *ngIf="showAddSuperhero" [listTeam]="listTeam" (togglePopUp)="switchAddSuperhero()" (toggleAddSuperheroe)="addSuperheroe($event)">
 </app-add-superhero>
 
 <div class="container">
@@ -13,43 +8,69 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col">Powerstats</th>
-        <th scope="col" class="table-center">Acciones</th>
+        <th scope="col" colspan="3">Superheroes</th>
       </tr>
     </thead>
     <tbody id="tableBody">
-        <ng-container *ngFor="let superheroe of listTeam">
-          <tr>
-            <td>
+      <ng-container *ngFor="let superheroe of listTeam; let i = index;">
+        <tr>
+          <td>
+            <div class="name-and-image">
               <div class="no-image superheroe-image">
                 <a target="blank" [href]="superheroe.image.url">
                   <img *ngIf="superheroe.image.url" (error)="deleteImage($event)" [src]="superheroe?.image?.url">
                 </a>
               </div>
-            </td>
-            <td>{{superheroe?.name}}</td>
-            <td>{{superheroe?.powerstats}}</td>
-            <td *ngIf="screenWidth >= 768 ; else elseBlock" class="table-center">
-              <a target="blank" [href]="'/details/'+superheroe?.id" type="button" class="btn btn2 btn-primary">Detalle</a>
-              <button (click)="removeSuperheroe(superheroe?.id)" type="button" class="btn btn2 btn-danger">Delete</button>
-            </td>
-            <ng-template #elseBlock>
-              <td class="table-center">
-                <img (click)="switchButtons(0)" src="../../../assets/images/caret-down.svg" class="cursor-pointer" alt="open">
-              </td>
-            </ng-template>
-          </tr>
-          <tr class="table-right" id="tr-show-0" *ngIf="screenWidth < 768">
-            <td colspan="4" class="tr-hidden" id="tr-hidden-0">
-              <div class="inactive">
-                <a target="blank" [href]="'/details/'+superheroe?.id" type="button" class="btn btn2 btn-primary">Detalle</a>
-                <button (click)="removeSuperheroe(superheroe?.id)" type="button" class="btn btn-danger">Eliminar</button>
+              <div class="table-center" style="font-weight: bold;">{{superheroe?.name}}</div>
+            </div>
+          </td>
+          <td>
+            <div class="powerstat-group">
+              <div class="powerstat">
+                <span class="powerstat-name">intelligence:</span>
+                <app-powerstat [powerstat]="superheroe?.powerstats?.intelligence"></app-powerstat>
               </div>
+              <div class="powerstat">
+                <span class="powerstat-name">strength:</span>
+                <app-powerstat [powerstat]="superheroe?.powerstats?.strength"></app-powerstat>
+              </div>
+              <div class="powerstat">
+                <span class="powerstat-name">speed:</span>
+                <app-powerstat [powerstat]="superheroe?.powerstats?.speed"></app-powerstat>
+              </div>
+              <div class="powerstat">
+                <span class="powerstat-name">durability:</span>
+                <app-powerstat [powerstat]="superheroe?.powerstats?.durability"></app-powerstat>
+              </div>
+              <div class="powerstat">
+                <span class="powerstat-name">power:</span>
+                <app-powerstat [powerstat]="superheroe?.powerstats?.power"></app-powerstat>
+              </div>
+              <div class="powerstat">
+                <span class="powerstat-name">combat:</span>
+                <app-powerstat [powerstat]="superheroe?.powerstats?.combat"></app-powerstat>
+              </div>
+            </div>
+          </td>
+          <td *ngIf="screenWidth >= 768 ; else elseBlock" class="table-center">
+            <a target="_blank" [href]="'/details/'+superheroe?.id" type="button" class="btn btn2 btn-outline-primary">Details</a>
+            <button (click)="removeSuperheroe(superheroe?.id)" type="button" class="btn btn2 btn-outline-danger">Delete</button>
+          </td>
+          <ng-template #elseBlock>
+            <td class="table-center">
+              <img (click)="switchButtons(i)" src="../../../assets/images/caret-down.svg" class="cursor-pointer" alt="open">
             </td>
-          </tr>
-        </ng-container>
+          </ng-template>
+        </tr>
+        <tr class="table-right" id="tr-show-{{i}}" *ngIf="screenWidth < 768">
+          <td colspan="3" class="tr-hidden" id="tr-hidden-{{i}}">
+            <div class="inactive">
+              <a target="_blank" [href]="'/details/'+superheroe?.id" type="button" class="btn btn2 btn-outline-primary">Details</a>
+              <button (click)="removeSuperheroe(superheroe?.id)" type="button" class="btn btn2 btn-outline-danger">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
 
     </tbody>
   </table>

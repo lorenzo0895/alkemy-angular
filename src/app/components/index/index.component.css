@@ -6,6 +6,7 @@ td {
 }
 .tr-hidden {
   padding: 0 8px;
+  transition: all 0.15s;
 }
 .inactive {
   max-height: 0;
@@ -30,9 +31,15 @@ td {
   height:100%;
   object-fit: cover;
 }
+.name-and-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .btn2 {
   width: 85px;
-  margin-right: 5px;
+  margin: 3px;
 }
 .table-center {
   text-align: center;
@@ -42,4 +49,24 @@ td {
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.powerstat-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.powerstat {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+}
+.powerstat-name {
+  width: 100px;
+}
+
+@media screen and (max-width: 768px) {
+  .powerstat-name {
+    font-size: small;
+  }
 }

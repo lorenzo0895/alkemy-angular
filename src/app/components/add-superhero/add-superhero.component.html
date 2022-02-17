@@ -1,11 +1,13 @@
-<div class="blur">
-  <div cdkDrag class="container-add-superhero">
-    <div cdkDragHandle class="mover"></div>
+<div class="blur" (click)="switchAddSuperhero()">
+</div>
+<div cdkDrag cdkDragBoundary=".blur" class="container-add-superhero">
+  <div cdkDragHandle class="mover"></div>
+  <div class="resto">
     <img (click)="switchAddSuperhero()" class="close-button" src="../../../assets/images/close-button.png" alt="close">
     <div class="mb-3">
       <label for="name" class="form-label">Name:</label>
       <div class="input-group" [formGroup]="form">
-        <input type="text" class="form-control" id="name" placeholder="e.g.: Batman" formControlName="name" (keyup.enter)="find()">
+        <input type="text" autocomplete="off" class="form-control" id="name" placeholder="e.g.: Batman" formControlName="name" (keyup.enter)="find()">
         <input type="submit" class="btn btn2 btn-primary" value="Find" (click)="find()">
       </div>
     </div>
@@ -22,7 +24,10 @@
               </div>
             </td>
             <td>{{superheroe?.name}}</td>
-            <td class="col-btn"><button (click)="addSuerheroe(superheroe)" class="btn btn2 btn-primary">Agregar</button></td>
+            <td class="col-btn">
+              <button (click)="addSuerheroe(superheroe)" class="btn btn2 btn-primary">Agregar</button>
+              <img (click)="addSuerheroe(superheroe)" src="../../../assets/images/plus-circle.svg" class="add-small">
+            </td>
           </tr>
         </tbody>
       </table>

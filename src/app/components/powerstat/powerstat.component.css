@@ -1,0 +1,25 @@
+.bar {
+  width: 150px;
+  height: 14px;
+  border-radius: 7px;
+  background-color: aliceblue;
+  box-shadow: 2px 2px 4px rgb(210, 210, 210);
+}
+.progress {
+  height: 14px;
+  border-radius: 7px;
+  background: linear-gradient(120deg, #aad5e9 100%, #a1c4fd 0%);
+  box-shadow: 2px 2px 4px #d5e8f2 inset;
+}
+@media screen and (max-width:1020px) {
+  .bar {
+    width: 70px;
+    height: 6px;
+    border-radius: 3px;
+    box-shadow: -1px 1px 3px rgb(210, 210, 210);
+  }
+  .progress {
+    height: 6px;
+    border-radius: 3px;
+  }
+}

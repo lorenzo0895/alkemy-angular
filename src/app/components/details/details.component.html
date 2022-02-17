@@ -1,1 +1,49 @@
 <app-nav></app-nav>
+<div class="container">
+  <div class="header">
+    <div class="photo-back">
+      <div class="photo">
+        <img src="{{superheroe.image.url}}" (error)="deleteImage($event)">
+      </div>
+    </div>
+    <div>
+      <h1>{{superheroe?.biography['full-name']}}</h1>
+      <p>
+        <ng-container *ngFor="let alias of superheroe?.biography?.aliases; let i = index;">
+          <span>{{alias}}</span>
+          <span *ngIf="i < superheroe?.biography?.aliases.length - 1">, </span>
+        </ng-container>
+      </p>
+    </div>
+  </div>
+
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" aria-selected="true">Appearance</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" aria-selected="false">Work</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" aria-selected="false">Connections</button>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <p>Weight: {{superheroe?.appearance?.weight[1]}}</p>
+        <p>Height: {{superheroe?.appearance?.height[1]}}</p>
+        <p>Eyes color: {{superheroe?.appearance['eye-color']}}</p>
+        <p>Hair color: {{superheroe?.appearance['hair-color']}}</p>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <p>Ocupation: {{superheroe?.work?.occupation}}</p>
+      <p>Base: {{superheroe?.work?.base}}</p>
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <p>Group affiliation: {{superheroe?.connections['group-affiliation']}}</p>
+      <p>Relatives: {{superheroe?.connections?.relatives}}</p>
+    </div>
+  </div>
+
+</div>

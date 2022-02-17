@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { SuperheroesService } from 'src/app/services/superheroes.service';
 
 @Component({
   selector: 'app-details',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsComponent implements OnInit {
 
-  constructor() { }
+  superheroe?:any;
+
+  constructor(
+    private superheroesService:SuperheroesService,
+    private activatedRoute:ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe((value:any) => {
+      this.superheroesService.findById(value.id).subscribe(superheroe => {
+        this.superheroe = superheroe;
+      });
+    });
+  }
+
+  deleteImage(e: Event) {
+    (e.target as HTMLImageElement).style.display = 'none';
   }
 
 }

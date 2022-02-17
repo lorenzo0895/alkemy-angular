@@ -13,5 +13,9 @@ export class SuperheroesService {
   findByName(name:string) {
     return this.http.get(this.uri + 'search/' + name);
   }
+
+  findById(id:number) {
+    return this.http.get(this.uri + id);
+  }
   
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { LoginService } from 'src/app/services/login.service';
 export class NavComponent implements OnInit {
 
   constructor(
-    private loginService:LoginService
+    private loginService:LoginService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -17,6 +19,11 @@ export class NavComponent implements OnInit {
 
   logout() {
     this.loginService.logout();
+  }
+
+  hasRoute(route:string) {
+    console.log(route);
+    return this.router.url === route;
   }
 
 }

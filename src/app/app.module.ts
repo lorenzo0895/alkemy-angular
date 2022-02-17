@@ -12,6 +12,8 @@ import { AddSuperheroComponent } from './components/add-superhero/add-superhero.
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { DetailsComponent } from './components/details/details.component';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { PowerstatComponent } from './components/powerstat/powerstat.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { DetailsComponent } from './components/details/details.component';
     IndexComponent,
     NavComponent,
     AddSuperheroComponent,
-    DetailsComponent
+    DetailsComponent,
+    PowerstatComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,10 @@ import { DetailsComponent } from './components/details/details.component';
     HttpClientModule,
     DragDropModule
   ],
-  providers: [],
+  providers: [
+    {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
+    JwtHelperService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
